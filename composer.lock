@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "99333a988fdf2e4643cabdffda971f42",
+    "content-hash": "225c026b2883c59b584c26d854d7060e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6552,6 +6552,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "barryvdh/laravel-cors": 20,
+        "ramsey/uuid": 20,
         "tymon/jwt-auth": 5,
         "yansongda/pay": 20
     },

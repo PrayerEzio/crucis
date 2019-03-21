@@ -2,9 +2,9 @@
 
 namespace App\Http\Services;
 
-use Illuminate\Support\Facades\Crypt;
 use Qiniu\Auth;
 use Qiniu\Storage\UploadManager;
+use Ramsey\Uuid\Uuid;
 
 class QiniuService
 {
@@ -31,7 +31,7 @@ class QiniuService
         return $auth->uploadToken($bucket);
     }
 
-    public function upload($file,$key = '',$dir = 'demo')
+    public function upload($file,$key = '',$dir = '')
     {
         if (!is_file($file) || !$file->isValid())
         {
@@ -42,7 +42,7 @@ class QiniuService
         $filePath = $file->getRealPath();
         if (empty($key))
         {
-            $file_name = Crypt::encrypt($file->getClientOriginalName());
+            $file_name = Uuid::uuid1()->getBytes();
             $key = "{$dir}/".$file_name.'.'.$file->getClientOriginalExtension();
         }
         $uploadManager = new UploadManager();

@@ -13,4 +13,6 @@ return [
     'inviter_reward' => 10,
     'coin_exchange_rate' => 10,
     'http_secure' => env('HTTP_SECURE',false),
+    'github_webhook_branch' => env('GITHUB_WEBHOOK_BRANCH','master'),
+    'root_path' => env('ROOT_PATH','/data/wwwroot/default'),
 ];

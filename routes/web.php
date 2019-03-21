@@ -11,6 +11,9 @@
 |
 */
 $home_private_group = function (){
+    Route::group(['prefix' => 'Github'],function(){
+        Route::post('/webhook','GithubController@webhook')->name('Home.Github.webhook');
+    });
     Route::group(['prefix' => 'Wechat'],function(){
         Route::post('/vail','WechatController@vail')->name('Home.Wechat.vail');
     });

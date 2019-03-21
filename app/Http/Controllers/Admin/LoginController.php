@@ -82,7 +82,6 @@ class LoginController extends CommonController
             $admin_user['register_ip'] = $request->getClientIp();
             $admin_user['is_super_admin'] = 0;
             $admin_user['status'] = 1;
-            $admin_user['avatar'] = "//img.91ysml.net/demo/eyJpdiI6IlllRGxGakpBSWltblNzZEJVcHdVSmc9PSIsInZhbHVlIjoiS1BWMDJHenJ0Q3g4d2M0SVcyclJHRWJ1RWx5NXlUeDlTS0hOV0ozT2dUanhXRzRuS0g1TDE0Vjh0cDVZZmdzSyIsIm1hYyI6Ijg4YTU0NDIxMDg3ZTc3ZDM5OTM1MjgyOTE1YjY4MzgzMGU1NDZjYTY2MWRmNDljOGM2NGJiMDM5ZWZlMmY5YWIifQ==.png";
             $admin = Admin::create($admin_user);
             if ($admin)
             {
