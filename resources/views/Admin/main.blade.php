@@ -40,7 +40,7 @@
 <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/iCheck/icheck.min.js"></script>
 <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/switchery/switchery.js"></script>
 <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/cropper/cropper.min.js"></script>
-<script src="{{ asset('assets/Vendor') }}/layui/layui.js"></script>
+<script src="{{ asset('assets/Vendor',config('crucis.http_secure')) }}/layui/layui.js"></script>
 <script>
     $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
 </script>

@@ -22,25 +22,11 @@
                 </div>
             </li>
             <li>
-                <a href="#">
+                <a class="J_menuItem" href="{{ url('Admin/Statistics/index',[],config('crucis.http_secure')) }}"
+                   data-id="{{ url('Admin/Statistics/index',[],config('crucis.http_secure')) }}">
                     <i class="fa fa-chart-pie"></i>
                     <span class="nav-label">统计</span>
-                    <span class="fa arrow"></span>
                 </a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a class="J_menuItem" href="">访问统计</a>
-                    </li>
-                    <li>
-                        <a class="J_menuItem" href="">商品统计</a>
-                    </li>
-                    <li>
-                        <a class="J_menuItem" href="">交易统计</a>
-                    </li>
-                    <li>
-                        <a class="J_menuItem" href="">房间统计</a>
-                    </li>
-                </ul>
             </li>
             <li>
                 <a href="#">
@@ -81,7 +67,8 @@
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="fab fa-adversal"></i> <span class="nav-label">反馈</span><span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label">反馈</span><span
+                            class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a class="J_menuItem" href="{{ url('Admin/Feedback',[],config('crucis.http_secure')) }}">反馈意见</a>

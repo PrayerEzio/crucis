@@ -16,7 +16,9 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <form method="POST" action="{{ isset($data->id) ? url('Admin/Advertisement',['id'=>$data->id],config('crucis.http_secure') : url('Admin/Advertisement',[],config('crucis.http_secure')) }}" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST"
+                              action="{{ isset($data->id) ? url('Admin/Advertisement',['id'=>$data->id],config('crucis.http_secure')) : url('Admin/Advertisement',[],config('crucis.http_secure')) }}"
+                              class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             {{ isset($data->id) ? method_field('PUT') : '' }}
                             <div class="form-group">

@@ -14,7 +14,9 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <form method="POST" action="{{ isset($data->id) ? url('Admin/Album',['id'=>$data->id],config('crucis.http_secure') : url('Admin/Album',[],config('crucis.http_secure')) }}" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST"
+                              action="{{ isset($data->id) ? url('Admin/Album',['id'=>$data->id],config('crucis.http_secure')) : url('Admin/Album',[],config('crucis.http_secure')) }}"
+                              class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <input type="hidden" name="_method" value="{{ isset($data->id) ? 'PUT' : 'POST' }}">
                             <input type="hidden" name="id" value="{{ $data->id or 0 }}">

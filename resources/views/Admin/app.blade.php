@@ -27,7 +27,9 @@
         <div id="page-wrapper" class="gray-bg dashbard-1">
             @include('Admin._layout.rightTop')
             <div class="row J_mainContent" id="content-main">
-                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="{{ url('Admin/Index/about_us',[],config('crucis.http_secure')) }}" frameborder="0" data-id="{{ url('Admin/Index/about_us',[],config('crucis.http_secure')) }}" seamless></iframe>
+                <iframe class="J_iframe" name="iframe0" width="100%" height="100%"
+                        src="{{ url('Admin/Statistics/index',[],config('crucis.http_secure')) }}" frameborder="0"
+                        data-id="{{ url('Admin/Statistics/index',[],config('crucis.http_secure')) }}" seamless></iframe>
             </div>
             @include('Admin._layout.footer')
         </div>
