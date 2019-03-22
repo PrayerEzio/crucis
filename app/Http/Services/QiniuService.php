@@ -42,7 +42,7 @@ class QiniuService
         $filePath = $file->getRealPath();
         if (empty($key))
         {
-            $file_name = Uuid::uuid1()->getBytes();
+            $file_name = Uuid::uuid1()->getHex();
             $key = "{$dir}/".$file_name.'.'.$file->getClientOriginalExtension();
         }
         $uploadManager = new UploadManager();
