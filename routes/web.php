@@ -59,6 +59,14 @@ $admin_private_group = function(){
         Route::get('/about_us','IndexController@about_us');
         Route::get('/billboard','IndexController@billboard');
     });
+    Route::group(['prefix' => 'Statistics'], function () {
+        $controller = 'Statistics';
+        Route::get('/index', "{$controller}Controller@index");
+        Route::post('/recharge', "{$controller}Controller@recharge");
+        Route::post('/order', "{$controller}Controller@order");
+        Route::post('/order_chart', "{$controller}Controller@order_chart");
+        Route::post('/user', "{$controller}Controller@user");
+    });
     Route::group(['prefix' => 'Auth'],function(){
         $controller = 'Auth';
         Route::get('/admin_list',"{$controller}Controller@admin_list");
@@ -186,7 +194,9 @@ $auth_public_group = function(){
     Route::get('/oauth/redirect/driver/{driver}', 'OAuthAuthorizationController@redirectToProvider');
 };
 
-Route::group(['prefix' => '','namespace' => 'Home'],$home_private_group);
+//Route::group(['prefix' => '','namespace' => 'Home'],$home_private_group);
+
+Route::group(['prefix' => '', 'namespace' => 'Admin', 'middleware' => ['admin.login', 'admin.permission']], $admin_private_group);
 
 Route::group(['prefix' => 'Auth','namespace' => 'Auth'],$auth_public_group);
 
