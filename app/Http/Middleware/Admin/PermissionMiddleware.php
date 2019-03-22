@@ -34,7 +34,7 @@ class PermissionMiddleware
         $admin_id = $request->session()->get('admin_info.id');
         if (empty($admin_id))
         {
-            return abort(401,"Don't have [{$permission_route}] permission");
+            return abort(401, "Can't find the admin info.");
         }
         if ($this->hasPermission($admin_id,$permission_route))
         {
@@ -52,14 +52,7 @@ class PermissionMiddleware
         {
             return $next($request);
         }
-        /*if ($this->hasPermission($admin_id,$permission_route_mca) ||
-            $this->hasPermission($admin_id,$permission_route_mc) ||
-            $this->hasPermission($admin_id,$permission_route_m) ||
-            $this->hasPermission($admin_id,$permission_route))
-        {
-            return $next($request);
-        }*/
-        return abort(401,"Don't have [{$permission_route}] permission");
+        return abort(401, "Don't have [{$permission_route_mca}] permission");
     }
 
     protected function getCurrentRoute()
@@ -76,11 +69,11 @@ class PermissionMiddleware
     {
         $admin = Admin::find($admin_id);
         $permission_model = new Permission();
-        $permission_info = $permission_model->where(['name'=>$permission])->count();
+        $permission_info = $permission_model->where(['name' => $permission])->first();
         if (empty($permission_info))
         {
             return false;
         }
-        return $admin->hasPermissionTo($permission);
+        return $admin->hasPermissionTo($permission_info);
     }
 }
