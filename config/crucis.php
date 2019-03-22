@@ -8,7 +8,7 @@
  */
 
 return [
-    'app_url' => env('APP_URL', 'http://www.crucis.cn'),
+    'app_url' => env('APP_URL', 'https://www.crucis.cn'),
     'point_exchange_rate' => 20,
     'inviter_reward' => 10,
     'coin_exchange_rate' => 10,

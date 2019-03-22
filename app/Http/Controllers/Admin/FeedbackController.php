@@ -82,7 +82,7 @@ class FeedbackController extends CommonController
         }else {
             $alert = ['error','操作失败'];
         }
-        return redirect('/Admin/Feedback/index')->with('alert',$alert);
+        return redirect(config('crucis.app_url') . '/Admin/Feedback/index')->with('alert', $alert);
     }
 
     /**

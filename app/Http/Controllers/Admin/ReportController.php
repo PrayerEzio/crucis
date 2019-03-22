@@ -75,7 +75,7 @@ class ReportController extends CommonController
         }else {
             $alert = ['error','操作失败'];
         }
-        return redirect('/Admin/Report/index')->with('alert',$alert);
+        return redirect(config('crucis.app_url') . '/Admin/Report/index')->with('alert', $alert);
     }
 
     /**

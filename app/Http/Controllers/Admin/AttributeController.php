@@ -23,7 +23,7 @@ class AttributeController extends CommonController
             if ($res)
             {
                 $alert = ['success','操作成功'];
-                return redirect('/Admin/Attribute/attributeCategoryList')->with('alert',$alert);
+                return redirect(config('crucis.app_url') . '/Admin/Attribute/attributeCategoryList')->with('alert', $alert);
             }else {
                 return redirect()->back()->withInput()->withErrors('保存失败！');
             }
@@ -45,7 +45,7 @@ class AttributeController extends CommonController
             }else {
                 $alert = ['error','操作失败'];
             }
-            return redirect('/Admin/Attribute/attributeCategoryList')->with('alert',$alert);
+            return redirect(config('crucis.app_url') . '/Admin/Attribute/attributeCategoryList')->with('alert', $alert);
         }else {
             $data = $attributeCategory->findOrFail($request->id);
             return view('Admin.Attribute.add_category')->with(compact('data'));
@@ -88,7 +88,7 @@ class AttributeController extends CommonController
             }else {
                 $alert = ['error','操作失败'];
             }
-            return redirect("/Admin/Attribute/attributeList/{$request->category_id}")->with('alert',$alert);
+            return redirect(config('crucis.app_url') . "/Admin/Attribute/attributeList/{$request->category_id}")->with('alert', $alert);
         }else {
             $cate_list = $attributeCategory->get();
             return view('Admin.Attribute.add_attribute')->with(compact('cate_list'));
@@ -110,7 +110,7 @@ class AttributeController extends CommonController
             }else {
                 $alert = ['error','操作失败'];
             }
-            return redirect("/Admin/Attribute/attributeList/{$request->category_id}")->with('alert',$alert);
+            return redirect(config('crucis.app_url') . "/Admin/Attribute/attributeList/{$request->category_id}")->with('alert', $alert);
         }else {
             $cate_list = $attributeCategory->get();
             $data = $attribute->findOrFail($request->id);

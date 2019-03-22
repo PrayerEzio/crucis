@@ -43,7 +43,7 @@ class GoodsController extends CommonController
             if ($res)
             {
                 $alert = ['success','操作成功'];
-                return redirect('/Admin/Goods/goodsCategoryList')->with('alert',$alert);
+                return redirect(config('crucis.app_url') . '/Admin/Goods/goodsCategoryList')->with('alert', $alert);
             }else {
                 return redirect()->back()->withInput()->withErrors('保存失败！');
             }
@@ -72,7 +72,7 @@ class GoodsController extends CommonController
             }else {
                 $alert = ['error','操作失败'];
             }
-            return redirect('/Admin/Goods/goodsCategoryList')->with('alert',$alert);
+            return redirect(config('crucis.app_url') . '/Admin/Goods/goodsCategoryList')->with('alert', $alert);
         }else {
             $data = $goodsCategory->findOrFail($request->id);
             return view('Admin.Goods.add_category')->with(compact('data'));
@@ -175,7 +175,7 @@ class GoodsController extends CommonController
             }else {
                 $alert = ['error','操作失败'];
             }
-            return redirect("/Admin/Goods/goodsList/{$request->category_id}")->with('alert',$alert);
+            return redirect(config('crucis.app_url') . "/Admin/Goods/goodsList/{$request->category_id}")->with('alert', $alert);
         }else {
             $cate_list = $goodsCategory->get();
             $cate_list = $this->unlimitedForLayer($cate_list);
@@ -247,7 +247,7 @@ class GoodsController extends CommonController
             }else {
                 $alert = ['error','操作失败'];
             }
-            return redirect("/Admin/Goods/goodsList/{$request->category_id}")->with('alert',$alert);
+            return redirect(config('crucis.app_url') . "/Admin/Goods/goodsList/{$request->category_id}")->with('alert', $alert);
         }else {
             $cate_list = $goodsCategory->get();
             $cate_list = $this->unlimitedForLayer($cate_list);
@@ -301,7 +301,7 @@ class GoodsController extends CommonController
             }else {
                 $alert = ['error','操作失败'];
             }
-            return redirect("/Admin/Goods/goodsPictureList/{$goods_id}")->with('alert',$alert);
+            return redirect(config('crucis.app_url') . "/Admin/Goods/goodsPictureList/{$goods_id}")->with('alert', $alert);
         }else {
             return view('Admin.Goods.add_goods_picture');
         }
@@ -338,7 +338,7 @@ class GoodsController extends CommonController
             }else {
                 $alert = ['error','操作失败'];
             }
-            return redirect("/Admin/Goods/goodsPictureList/{$goods_picture_info->goods_id}")->with('alert',$alert);
+            return redirect(config('crucis.app_url') . "/Admin/Goods/goodsPictureList/{$goods_picture_info->goods_id}")->with('alert', $alert);
         }else {
             $goods_picture_info = $goodsPicture->findOrFail($id);
             return view('Admin.Goods.add_goods_picture')->with(compact('goods_picture_info'));

@@ -51,7 +51,7 @@ class AdvertisementController extends CommonController
         if (empty($advertisement->image))
         {
             $alert = ['error','图片地址不能为空!'];
-            return redirect('/Admin/Advertisement/create')->with('alert',$alert);
+            return redirect(config('crucis.app_url') . '/Admin/Advertisement/create')->with('alert', $alert);
         }
         $advertisement->position = $request->position;
         $advertisement->title = $request->title;
@@ -63,7 +63,7 @@ class AdvertisementController extends CommonController
         if ($res)
         {
             $alert = ['success','操作成功'];
-            return redirect('/Admin/Advertisement')->with('alert',$alert);
+            return redirect(config('crucis.app_url') . '/Admin/Advertisement')->with('alert', $alert);
         }else {
             return redirect()->back()->withInput()->withErrors('保存失败！');
         }
@@ -120,7 +120,7 @@ class AdvertisementController extends CommonController
         }else {
             $alert = ['error','操作失败'];
         }
-        return redirect('/Admin/Advertisement')->with('alert',$alert);
+        return redirect(config('crucis.app_url') . '/Admin/Advertisement')->with('alert', $alert);
     }
 
     /**

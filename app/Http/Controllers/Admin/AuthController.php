@@ -50,7 +50,7 @@ class AuthController extends CommonController
         return view('Admin.Auth.admin_show')->with(compact('admin_info','role_list'));
     }
 
-    public function admin_store($id,Request $request,QiniuService $qiniuService,AdminService $adminService,Admin $admin,Role $role)
+    public function admin_store($id, Request $request, QiniuService $qiniuService, AdminService $adminService, Admin $admin)
     {
         $adminService->edit($id,$request,$qiniuService);
         $admin_info = $admin->findOrFail($id);
@@ -63,7 +63,7 @@ class AuthController extends CommonController
         }
         if (!empty($request->role)) $admin_info->syncRoles($request->role);
         $alert = ['success','操作成功'];
-        return redirect('/Admin/Auth/admin_list')->with('alert',$alert);
+        return redirect(config('crucis.app_url') . '/Admin/Auth/admin_list')->with('alert', $alert);
     }
 
     public function permission_create(Request $request,Permission $permission)
@@ -81,7 +81,7 @@ class AuthController extends CommonController
             }else {
                 $alert = ['error','操作失败'];
             }
-            return redirect("/Admin/Auth/permission_list")->with('alert',$alert);
+            return redirect(config('crucis.app_url') . "/Admin/Auth/permission_list")->with('alert', $alert);
         }else {
             return view('Admin.Auth.permission_create');
         }
@@ -103,7 +103,7 @@ class AuthController extends CommonController
             }else {
                 $alert = ['error','操作失败'];
             }
-            return redirect("/Admin/Auth/permission_list")->with('alert',$alert);
+            return redirect(config('crucis.app_url') . "/Admin/Auth/permission_list")->with('alert', $alert);
         }else {
             $data = $permission->findOrFail($request->id);
             return view('Admin.Auth.permission_create')->with(compact('data'));
@@ -145,7 +145,7 @@ class AuthController extends CommonController
             }else {
                 $alert = ['error','操作失败'];
             }
-            return redirect("/Admin/Auth/role_list")->with('alert',$alert);
+            return redirect(config('crucis.app_url') . "/Admin/Auth/role_list")->with('alert', $alert);
         }else {
             $permission_list = $permission->all();
             return view('Admin.Auth.role_create')->with(compact('permission_list'));
@@ -170,7 +170,7 @@ class AuthController extends CommonController
             }else {
                 $alert = ['error','操作失败'];
             }
-            return redirect("/Admin/Auth/role_list")->with('alert',$alert);
+            return redirect(config('crucis.app_url') . "/Admin/Auth/role_list")->with('alert', $alert);
         }else {
             $permission_list = $permission->all();
             $data = $role->findOrFail($request->id);

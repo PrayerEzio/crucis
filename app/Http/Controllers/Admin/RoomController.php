@@ -77,6 +77,6 @@ class RoomController extends BaseController
         }else {
             $alert = ['error','操作失败'];
         }
-        return redirect('/Admin/Room')->with('alert',$alert);
+        return redirect(config('crucis.app_url') . '/Admin/Room')->with('alert', $alert);
     }
 }

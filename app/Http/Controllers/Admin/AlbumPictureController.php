@@ -49,7 +49,7 @@ class AlbumPictureController extends CommonController
         if ($res)
         {
             $alert = ['success','操作成功'];
-            return redirect("/Admin/Album/{$albumPicture->album_id}")->with('alert',$alert);
+            return redirect(config('crucis.app_url') . "/Admin/Album/{$albumPicture->album_id}")->with('alert', $alert);
         }else {
             return redirect()->back()->withInput()->withErrors('保存失败！');
         }
@@ -96,7 +96,7 @@ class AlbumPictureController extends CommonController
         if ($res)
         {
             $alert = ['success','操作成功'];
-            return redirect("/Admin/Album/{$albumPicture->album_id}")->with('alert',$alert);
+            return redirect(config('crucis.app_url') . "/Admin/Album/{$albumPicture->album_id}")->with('alert', $alert);
         }else {
             return redirect()->back()->withInput()->withErrors('保存失败！');
         }

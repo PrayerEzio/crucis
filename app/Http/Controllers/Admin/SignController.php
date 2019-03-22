@@ -70,6 +70,6 @@ class SignController extends Controller
         }else {
             $alert = ['error','操作失败'];
         }
-        return redirect('/Admin/Sign')->with('alert',$alert);
+        return redirect(config('crucis.app_url') . '/Admin/Sign')->with('alert', $alert);
     }
 }

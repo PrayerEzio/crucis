@@ -58,7 +58,7 @@ class ArticleController extends CommonController
             }else {
                 $alert = ['error','操作失败'];
             }
-            return redirect("/Admin/Article/index")->with('alert',$alert);
+            return redirect(config('crucis.app_url') . "/Admin/Article/index")->with('alert', $alert);
         }else {
             $article_cates = $articleCategory->get();
             return view('Admin.Article.add')->with(compact('article_cates'));
@@ -93,7 +93,7 @@ class ArticleController extends CommonController
             }else {
                 $alert = ['error','操作失败'];
             }
-            return redirect("/Admin/Article/index")->with('alert',$alert);
+            return redirect(config('crucis.app_url') . "/Admin/Article/index")->with('alert', $alert);
         }else {
             $article_cates = $articleCategory->get();
             $id = $request->id;
@@ -117,7 +117,7 @@ class ArticleController extends CommonController
             }else {
                 $alert = ['error','操作失败'];
             }
-            return redirect("/Admin/Article/cateList")->with('alert',$alert);
+            return redirect(config('crucis.app_url') . "/Admin/Article/cateList")->with('alert', $alert);
         }else {
             return view('Admin.Article.add_cate');
         }
@@ -139,7 +139,7 @@ class ArticleController extends CommonController
             }else {
                 $alert = ['error','操作失败'];
             }
-            return redirect("/Admin/Article/cateList")->with('alert',$alert);
+            return redirect(config('crucis.app_url') . "/Admin/Article/cateList")->with('alert', $alert);
         }else {
             $article_cates = $articleCategory->get();
             $data = $articleCategory->findOrFail($request->id);
