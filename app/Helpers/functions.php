@@ -1,6 +1,26 @@
 <?php
 
 /**
+ * 获取上层最小整10数 例如 6->10
+ * @param $number
+ * @return float|int
+ */
+function getMinimumWholeDecimal($number, $is_carry = true)
+{
+    if (!is_numeric($number)) return false;
+    $number_length = strlen(number_format($number, 2)) - 4;
+    $number_length = $number_length - 2;
+    if ($number_length <= 0) {
+        $number_length = 1;
+    }
+    if ($is_carry) {
+        return ceil($number / pow(10, $number_length)) * pow(10, $number_length);
+    } else {
+        return floor($number / pow(10, $number_length)) * pow(10, $number_length);
+    }
+}
+
+/**
  * 	作用：产生随机字符串，不长于32位
  */
 function createNoncestr($length = 32)

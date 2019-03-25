@@ -9,8 +9,12 @@ use Illuminate\Http\Request;
 
 class StatisticsController extends CommonController
 {
-    public function index()
+    public function index(Request $request)
     {
+        /*$number = $request->num;
+        dump($number);
+        dump(getMinimumWholeDecimal($number,true));
+        dd(getMinimumWholeDecimal($number,false));*/
         return view('Admin.Statistics.index');
     }
 
@@ -138,12 +142,12 @@ class StatisticsController extends CommonController
                             ->sum('amount');
                         $this_month_order_num = $order->whereBetween('created_at', ["{$year}-{$month}-{$day} {$i}:00:00", "{$year}-{$month}-{$day} {$i}:59:59"])
                             ->count();
-                        $recharge_order_amount[] = $this_month_order_amount;
+                        $recharge_order_amount[] = floatval($this_month_order_amount);
                         $recharge_order_num[] = $this_month_order_num;
-                        if ($y_axis_left_max < $this_month_order_amount) $y_axis_left_max = $this_month_order_amount;
-                        if ($y_axis_left_min > $this_month_order_amount) $y_axis_left_min = $this_month_order_amount;
-                        if ($y_axis_right_max < $this_month_order_num) $y_axis_right_max = $this_month_order_num;
-                        if ($y_axis_right_min > $this_month_order_num) $y_axis_right_min = $this_month_order_num;
+                        $y_axis_left_max = max($y_axis_left_max, $this_month_order_amount);
+                        $y_axis_left_min = min($y_axis_left_min, $this_month_order_amount);
+                        $y_axis_right_max = max($y_axis_right_max, $this_month_order_num);
+                        $y_axis_right_min = min($y_axis_right_min, $this_month_order_num);
                     }
                 }
                 $current = '今日';
@@ -165,8 +169,10 @@ class StatisticsController extends CommonController
                             ->count();
                         $recharge_order_amount[] = $this_month_order_amount;
                         $recharge_order_num[] = $this_month_order_num;
-                        if ($y_axis_left_max < $this_month_order_amount) $y_axis_left_max = $this_month_order_amount;
-                        if ($y_axis_right_max < $this_month_order_num) $y_axis_right_max = $this_month_order_num;
+                        $y_axis_left_max = max($y_axis_left_max, $this_month_order_amount);
+                        $y_axis_left_min = min($y_axis_left_min, $this_month_order_amount);
+                        $y_axis_right_max = max($y_axis_right_max, $this_month_order_num);
+                        $y_axis_right_min = min($y_axis_right_min, $this_month_order_num);
                     }
                 }
                 $current = '本月';
@@ -185,8 +191,10 @@ class StatisticsController extends CommonController
                             ->count();
                         $recharge_order_amount[] = $this_month_order_amount;
                         $recharge_order_num[] = $this_month_order_num;
-                        if ($y_axis_left_max < $this_month_order_amount) $y_axis_left_max = $this_month_order_amount;
-                        if ($y_axis_right_max < $this_month_order_num) $y_axis_right_max = $this_month_order_num;
+                        $y_axis_left_max = max($y_axis_left_max, $this_month_order_amount);
+                        $y_axis_left_min = min($y_axis_left_min, $this_month_order_amount);
+                        $y_axis_right_max = max($y_axis_right_max, $this_month_order_num);
+                        $y_axis_right_min = min($y_axis_right_min, $this_month_order_num);
                     }
                 }
                 $current = '今年';
@@ -195,8 +203,26 @@ class StatisticsController extends CommonController
             default:
                 break;
         }
-        $y_axis_left_max = ceil($y_axis_left_max + 100);
-        $y_axis_right_max = ceil($y_axis_right_max + 100);
+        if ($y_axis_left_max == 0) $y_axis_left_max = 10;
+        if ($y_axis_right_max == 0) $y_axis_right_max = 10;
+        $y_axis_left_max = getMinimumWholeDecimal($y_axis_left_max, true);
+        $y_axis_right_max = getMinimumWholeDecimal($y_axis_right_max, true);
+        $y_axis_left_min = getMinimumWholeDecimal($y_axis_left_min, false);
+        $y_axis_right_min = getMinimumWholeDecimal($y_axis_right_min, false);
+        $y_axis_left_interval = ($y_axis_left_max - $y_axis_left_min) / 5;
+        $y_axis_right_interval = ($y_axis_right_max - $y_axis_right_min) / 5;
+        $date = $this->getStartAndEndDate($type);
+        $where[] = ['status', '=', 5];
+        $where[] = ['created_at', '>', $date['start_date']];
+        $where[] = ['created_at', '<=', $date['end_date']];
+        $current_order_amount = $order->where($where)->OrderType('recharge')->sum('amount');
+        $current_order_count = $order->where($where)->OrderType('recharge')->count();
+        $sub_date = $this->getStartAndEndDate($type, 1);
+        $sub_where[] = ['status', '=', 5];
+        $sub_where[] = ['created_at', '>', $sub_date['start_date']];
+        $sub_where[] = ['created_at', '<=', $sub_date['end_date']];
+        $last_order_amount = $order->where($sub_where)->OrderType('recharge')->sum('amount');
+        $last_order_count = $order->where($sub_where)->OrderType('recharge')->count();
         return json_encode([
             "status_code" => 200,
             "message" => "SUCCESS",
@@ -212,17 +238,23 @@ class StatisticsController extends CommonController
                         'left' => [
                             'min' => $y_axis_left_min,
                             'max' => $y_axis_left_max,
-                            'interval' => ceil(($y_axis_left_max - $y_axis_left_min) / 1000) * 100,
+                            'interval' => $y_axis_left_interval,
                         ],
                         'right' => [
                             'min' => $y_axis_right_min,
                             'max' => $y_axis_right_max,
-                            'interval' => ceil(($y_axis_right_max - $y_axis_right_min) / 1000) * 100,
+                            'interval' => $y_axis_right_interval,
                         ],
                     ],
                     'series' => [
                         'recharge_order_amount' => $recharge_order_amount,
                         'recharge_order_num' => $recharge_order_num,
+                    ],
+                    'detail' => [
+                        'current_order_count' => $current_order_count,
+                        'last_order_count' => $last_order_count,
+                        'current_order_amount' => $current_order_amount,
+                        'last_order_amount' => $last_order_amount,
                     ]
                 ],
             ],
