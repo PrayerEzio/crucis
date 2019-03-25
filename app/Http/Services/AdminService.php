@@ -25,13 +25,13 @@ class AdminService
         {
             $data['avatar'] = $qiniuService->upload($request->file('avatar'),'','avatar');
         }else {
-            unset($data['avatar']);
+            $data = array_except($data, ['avatar']);
         }
         if ($data['password'])
         {
             $data['password'] = Crypt::encrypt($data['password']);
         }else {
-            unset($data['password']);
+            $data = array_except($data, ['password']);
         }
         $data['status'] = $data['status'] == 'on' ? 1 : 0;
         return $this->repository->editAdminData($id,$data);

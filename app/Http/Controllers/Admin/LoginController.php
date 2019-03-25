@@ -42,8 +42,7 @@ class LoginController extends CommonController
                 return back()->withErrors($errors);
             }
             $admin_info_array = $admin_info->toArray();
-            unset($admin_info_array['password']);
-            unset($admin_info_array['status']);
+            $admin_info_array = array_except($admin_info_array,['password','status']);
             session(['admin_info'=>$admin_info_array]);
             $admin_info->token = session('_token');
             $admin_info->save();
