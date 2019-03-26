@@ -27,7 +27,7 @@ class GoodsController extends CommonController
         return view('Admin.Goods.goods_category_list');
     }
 
-    public function addCategory(Request $request,GoodsCategory $goodsCategory,$id,QiniuService $qiniuService)
+    public function addCategory(Request $request, GoodsCategory $goodsCategory, $id = 0, QiniuService $qiniuService)
     {
         if ($request->isMethod('post'))
         {

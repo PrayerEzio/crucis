@@ -163,6 +163,7 @@ $admin_private_group = function(){
     });
     Route::group(['prefix' => 'Ajax'],function(){
         $controller = 'Ajax';
+        Route::post('/getGoodsCategoryList', "{$controller}Controller@getGoodsCategoryList")->name("Admin.{$controller}.getGoodsCategoryList");
         Route::post('/getAttributesList',"{$controller}Controller@getAttributesList")->name("Admin.{$controller}.getOrderDetail");
     });
     Route::resource('User', 'UserController');

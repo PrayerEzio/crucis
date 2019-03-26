@@ -8,7 +8,9 @@
                     <div class="ibox-title">
                         <h5>{{ isset($data->id) ? '编辑' : '新增' }}产品分类 <small></small></h5>
                         <div class="ibox-tools">
-                            <a href="{{ url('Admin/Article/cateList',[],config('crucis.http_secure')) }}"><button class="btn btn-xs btn-info">返回</button></a>
+                            <a href="{{ url('Admin/Goods/goodsCategoryList',[],config('crucis.http_secure')) }}">
+                                <button class="btn btn-xs btn-info">返回</button>
+                            </a>
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
                             </a>
