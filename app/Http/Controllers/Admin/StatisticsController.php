@@ -1,4 +1,11 @@
 <?php
+/**
+ * Copyright (c) 2019. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+ * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+ * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+ * Vestibulum commodo. Ut rhoncus gravida arcu.
+ */
 
 namespace App\Http\Controllers\Admin;
 
@@ -79,7 +86,7 @@ class StatisticsController extends CommonController
         $sub_amount = $order->where($sub_where)->OrderType('recharge')->sum('amount');
         $ratio = "-";
         if ($sub_amount != 0) {
-            $ratio = ($amount / $sub_amount - 1) * 100;
+            $ratio = round(($amount / $sub_amount - 1) * 100, 2);
             $ratio .= "%";
         }
         return json_encode([
@@ -106,7 +113,7 @@ class StatisticsController extends CommonController
         $sub_count = $order->where($sub_where)->OrderType('point_shopping')->count();
         $ratio = "-";
         if ($sub_count != 0) {
-            $ratio = ($count / $sub_count - 1) * 100;
+            $ratio = round(($count / $sub_count - 1) * 100, 2);
             $ratio .= "%";
         }
         return json_encode([
@@ -280,7 +287,7 @@ class StatisticsController extends CommonController
         $sub_count = $user->where($sub_where)->count();
         $ratio = "-";
         if ($sub_count != 0) {
-            $ratio = ($count / $sub_count - 1) * 100;
+            $ratio = round(($count / $sub_count - 1) * 100, 2);
             $ratio .= "%";
         }
         return json_encode([
