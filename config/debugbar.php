@@ -197,5 +197,5 @@ return [
      | By default DebugBar route served from the same domain that request served.
      | To override default domain, specify it as a non-empty value.
      */
-    'route_domain' => null,
+    'route_domain' => config('crucis.app_url'),
 ];

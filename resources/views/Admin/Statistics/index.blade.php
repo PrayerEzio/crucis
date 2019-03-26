@@ -176,19 +176,19 @@
         </div>
     </div>
 @section('javascript')
-    <script src="{{ asset('assets/Admin',config('crucis.admin_http_secure')) }}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
-    <script src="{{ asset('assets/Admin',config('crucis.admin_http_secure')) }}/js/plugins/flot/jquery.flot.js"></script>
-    <script src="{{ asset('assets/Admin',config('crucis.admin_http_secure')) }}/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-    <script src="{{ asset('assets/Admin',config('crucis.admin_http_secure')) }}/js/plugins/flot/jquery.flot.spline.js"></script>
-    <script src="{{ asset('assets/Admin',config('crucis.admin_http_secure')) }}/js/plugins/flot/jquery.flot.resize.js"></script>
-    <script src="{{ asset('assets/Admin',config('crucis.admin_http_secure')) }}/js/plugins/flot/jquery.flot.pie.js"></script>
-    <script src="{{ asset('assets/Admin',config('crucis.admin_http_secure')) }}/js/plugins/flot/jquery.flot.symbol.js"></script>
-    <script src="{{ asset('assets/Admin',config('crucis.admin_http_secure')) }}/js/plugins/peity/jquery.peity.min.js"></script>
-    <script src="{{ asset('assets/Admin',config('crucis.admin_http_secure')) }}/js/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="{{ asset('assets/Admin',config('crucis.admin_http_secure')) }}/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="{{ asset('assets/Admin',config('crucis.admin_http_secure')) }}/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="{{ asset('assets/Admin',config('crucis.admin_http_secure')) }}/js/plugins/easypiechart/jquery.easypiechart.js"></script>
-    <script src="{{ asset('assets/Admin',config('crucis.admin_http_secure')) }}/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/flot/jquery.flot.js"></script>
+    <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/flot/jquery.flot.spline.js"></script>
+    <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/flot/jquery.flot.pie.js"></script>
+    <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/flot/jquery.flot.symbol.js"></script>
+    <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/easypiechart/jquery.easypiechart.js"></script>
+    <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/sparkline/jquery.sparkline.min.js"></script>
     <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.common.js"></script>
     <script>
         $(document).ready(function () {
@@ -200,7 +200,7 @@
         });
 
         function get_recharge_statistics(type) {
-            var URL = "{{ url('Admin/Statistics/recharge',[],config('crucis.admin_http_secure')) }}";
+            var URL = "{{ url('Admin/Statistics/recharge',[],config('crucis.http_secure')) }}";
             var data = {'type': type};
             var button_id_name = "#recharge_statistics_" + type;
             $(".recharge_statistics_btn").removeClass('active');
@@ -213,7 +213,7 @@
         }
 
         function get_order_statistics(type) {
-            var URL = "{{ url('Admin/Statistics/order',[],config('crucis.admin_http_secure')) }}";
+            var URL = "{{ url('Admin/Statistics/order',[],config('crucis.http_secure')) }}";
             var data = {'type': type};
             var button_id_name = "#order_statistics_" + type;
             $(".order_statistics_btn").removeClass('active');
@@ -226,7 +226,7 @@
         }
 
         function get_new_user_statistics(type) {
-            var URL = "{{ url('Admin/Statistics/user',[],config('crucis.admin_http_secure')) }}";
+            var URL = "{{ url('Admin/Statistics/user',[],config('crucis.http_secure')) }}";
             var data = {'type': type, 'scope': 'new'};
             var button_id_name = "#new_user_statistics_" + type;
             $(".new_user_statistics_btn").removeClass('active');
@@ -239,7 +239,7 @@
         }
 
         function get_active_user_statistics(type) {
-            var URL = "{{ url('Admin/Statistics/user',[],config('crucis.admin_http_secure')) }}";
+            var URL = "{{ url('Admin/Statistics/user',[],config('crucis.http_secure')) }}";
             var data = {'type': type, 'scope': 'active'};
             var button_id_name = "#active_user_statistics_" + type;
             $(".active_user_statistics_btn").removeClass('active');
@@ -252,7 +252,7 @@
         }
 
         function get_order_statistics_chart(type) {
-            var URL = "{{ url('Admin/Statistics/order_chart',[],config('crucis.admin_http_secure')) }}";
+            var URL = "{{ url('Admin/Statistics/order_chart',[],config('crucis.http_secure')) }}";
             var data = {'type': type};
             var button_id_name = "#order_statistics_chart_" + type;
             $(".order_statistics_chart_btn").removeClass('active');

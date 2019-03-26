@@ -18,10 +18,6 @@ class StatisticsController extends CommonController
 {
     public function index(Request $request)
     {
-        /*$number = $request->num;
-        dump($number);
-        dump(getMinimumWholeDecimal($number,true));
-        dd(getMinimumWholeDecimal($number,false));*/
         return view('Admin.Statistics.index');
     }
 

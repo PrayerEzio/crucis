@@ -14,8 +14,8 @@ return [
    
     'supportsCredentials' => true,
     'allowedOrigins' => [
-        'http://www.crucis.com',
-        'https://www.crucis.com',
+        'http://www.crucis.cn',
+        'https://www.crucis.cn',
     ],
     'allowedOriginsPatterns' => [],
     'allowedHeaders' => ['*'],
