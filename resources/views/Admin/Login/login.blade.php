@@ -29,13 +29,13 @@
                     </div>
                     <div class="m-b"></div>
                     <h4>欢迎使用 <strong>Crucis 管理后台</strong></h4>
-                    <ul class="m-b">
+                    {{--<ul class="m-b">
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势一</li>
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势二</li>
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势三</li>
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势四</li>
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势五</li>
-                    </ul>
+                    </ul>--}}
                 </div>
             </div>
             <div class="col-sm-5">
@@ -69,13 +69,9 @@
         </div>
         <div class="signup-footer">
             <div class="pull-left">
-                &copy; 2015 All Rights Reserved. Crucis
+                &copy; {{ date('Y',time()) }} All Rights Reserved. Crucis
             </div>
         </div>
     </div>
-    <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/plugins/iCheck/icheck.min.js"></script>
-    <script>
-        $(document).ready(function(){$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})});
-    </script>
 </body>
 </html>
