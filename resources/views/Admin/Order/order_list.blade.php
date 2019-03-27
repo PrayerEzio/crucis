@@ -12,16 +12,6 @@
                         <h5>订单列表
                             <small></small>
                         </h5>
-                        <div class="ibox-tools">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li>
-                                    <a href="{{ url('Admin/Goods/addGoods',[],config('crucis.http_secure')) }}"><i class="fa fa-plus"></i> 新增</a>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                     <div class="ibox-content">
                         <form id="filter_form" method="get" action="">
