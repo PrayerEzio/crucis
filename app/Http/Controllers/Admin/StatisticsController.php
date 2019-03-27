@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 
 class StatisticsController extends CommonController
 {
-    public function index(Request $request)
+    public function index()
     {
         return view('Admin.Statistics.index');
     }
@@ -74,12 +74,12 @@ class StatisticsController extends CommonController
         $where[] = ['status', '=', 5];
         $where[] = ['created_at', '>', $date['start_date']];
         $where[] = ['created_at', '<=', $date['end_date']];
-        $amount = $order->where($where)->OrderType('recharge')->sum('amount');
+        $amount = $order->where($where)->sum('amount');
         $sub_date = $this->getStartAndEndDate($type, 1);
         $sub_where[] = ['status', '=', 5];
         $sub_where[] = ['created_at', '>', $sub_date['start_date']];
         $sub_where[] = ['created_at', '<=', $sub_date['end_date']];
-        $sub_amount = $order->where($sub_where)->OrderType('recharge')->sum('amount');
+        $sub_amount = $order->where($sub_where)->sum('amount');
         $ratio = "-";
         if ($sub_amount != 0) {
             $ratio = round(($amount / $sub_amount - 1) * 100, 2);
@@ -144,6 +144,7 @@ class StatisticsController extends CommonController
                             ->where('status', '>', 1)
                             ->sum('amount');
                         $this_month_order_num = $order->whereBetween('created_at', ["{$year}-{$month}-{$day} {$i}:00:00", "{$year}-{$month}-{$day} {$i}:59:59"])
+                            ->where('status', '>', 1)
                             ->count();
                         $recharge_order_amount[] = floatval($this_month_order_amount);
                         $recharge_order_num[] = $this_month_order_num;
@@ -169,6 +170,7 @@ class StatisticsController extends CommonController
                         $this_month_order_num = $order->whereYear('created_at', $year)
                             ->whereMonth('created_at', $month)
                             ->whereDay('created_at', $i)
+                            ->where('status', '>', 1)
                             ->count();
                         $recharge_order_amount[] = $this_month_order_amount;
                         $recharge_order_num[] = $this_month_order_num;
@@ -191,6 +193,7 @@ class StatisticsController extends CommonController
                             ->sum('amount');
                         $this_month_order_num = $order->whereYear('created_at', $year)
                             ->whereMonth('created_at', $i)
+                            ->where('status', '>', 1)
                             ->count();
                         $recharge_order_amount[] = $this_month_order_amount;
                         $recharge_order_num[] = $this_month_order_num;
@@ -215,17 +218,17 @@ class StatisticsController extends CommonController
         $y_axis_left_interval = ($y_axis_left_max - $y_axis_left_min) / 5;
         $y_axis_right_interval = ($y_axis_right_max - $y_axis_right_min) / 5;
         $date = $this->getStartAndEndDate($type);
-        $where[] = ['status', '=', 5];
+        $where[] = ['status', '>', 1];
         $where[] = ['created_at', '>', $date['start_date']];
         $where[] = ['created_at', '<=', $date['end_date']];
-        $current_order_amount = $order->where($where)->OrderType('recharge')->sum('amount');
-        $current_order_count = $order->where($where)->OrderType('recharge')->count();
+        $current_order_amount = $order->where($where)->sum('amount');
+        $current_order_count = $order->where($where)->count();
         $sub_date = $this->getStartAndEndDate($type, 1);
-        $sub_where[] = ['status', '=', 5];
+        $sub_where[] = ['status', '>', 1];
         $sub_where[] = ['created_at', '>', $sub_date['start_date']];
         $sub_where[] = ['created_at', '<=', $sub_date['end_date']];
-        $last_order_amount = $order->where($sub_where)->OrderType('recharge')->sum('amount');
-        $last_order_count = $order->where($sub_where)->OrderType('recharge')->count();
+        $last_order_amount = $order->where($sub_where)->sum('amount');
+        $last_order_count = $order->where($sub_where)->count();
         return json_encode([
             "status_code" => 200,
             "message" => "SUCCESS",
