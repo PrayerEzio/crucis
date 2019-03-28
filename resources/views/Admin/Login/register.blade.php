@@ -1,5 +1,5 @@
 @extends('Admin.main')
-@section('title', "首页-Sramer")
+
 @section('body')
     <div class="middle-box text-center loginscreen animated fadeInDown">
         <div>

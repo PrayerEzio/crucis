@@ -1,5 +1,5 @@
 @extends('Admin.main')
-@section('title', "首页-Sramer")
+
 @section('css')
 @endsection
 @section('body')

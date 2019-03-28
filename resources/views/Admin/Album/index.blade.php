@@ -1,5 +1,5 @@
 @extends('Admin.main')
-@section('title', "相册-Sramer")
+@section('seo_title', "相册")
 @section('body')
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">

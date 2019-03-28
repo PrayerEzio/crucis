@@ -1,5 +1,5 @@
 @extends('Admin.main')
-@section('title', "首页-Sramer")
+
 @section('css')
     <link href=" {{ asset('assets/Admin',config('crucis.http_secure')) }}/css/plugins/jsTree/style.min.css" rel="stylesheet">
 @endsection

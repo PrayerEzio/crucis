@@ -1,5 +1,5 @@
 @extends('Admin.main')
-@section('title', "首页-Sramer")
+
 @section('css')
     <link href="{{ asset('assets/Admin',config('crucis.http_secure')) }}/css/plugins/blueimp/css/blueimp-gallery.min.css" rel="stylesheet">
     <style>
