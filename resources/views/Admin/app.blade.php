@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <title>Crucis后台管理系统</title>
-    <meta name="keywords" content="Crucis后台,管理系统,后台管理系统">
-    <meta name="description" content="Crucis后台管理系统">
+    <title>@yield('seo_title','Crucis管理后台')</title>
+    <meta name="keywords" content="@yield('seo_keywords','Crucis后台管理系统,后台管理系统')">
+    <meta name="description" content="@yield('seo_description','Crucis是一个简洁优雅的后台管理系统')">
     <!--[if lt IE 8]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <meta name="csrf-token" content="{{ csrf_token() }}">

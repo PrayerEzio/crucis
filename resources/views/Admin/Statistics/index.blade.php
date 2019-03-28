@@ -1,5 +1,4 @@
 @extends('Admin.main')
-@section('title', "首页-Sramer")
 @section('body')
     <div class="wrapper wrapper-content">
         <div class="row">
