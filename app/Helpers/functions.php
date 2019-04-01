@@ -1,5 +1,116 @@
 <?php
 
+function bubbleSort($array)
+{
+    $len = count($array);
+    if ($len <= 1) {
+        return $array;
+    }
+    for ($i = 0; $i < $len - 1; ++$i) {
+        for ($j = 0; $j < $len - 1 - $i; ++$j) {
+            if ($array[$j] > $array[$j + 1]) {
+                $temp = $array[$j];
+                $array[$j] = $array[$j + 1];
+                $array[$j + 1] = $temp;
+            }
+        }
+    }
+    return $array;
+}
+
+function selectionSort($array)
+{
+    $len = count($array);
+    if ($len <= 1) {
+        return $array;
+    }
+    for ($i = 0; $i < $len - 1; ++$i) {
+        $minIndex = $i;
+        for ($j = $i; $j < $len; ++$j) {
+            if ($array[$minIndex] > $array[$j]) {
+                $minIndex = $j;
+            }
+        }
+        $temp = $array[$minIndex];
+        $array[$minIndex] = $array[$i];
+        $array[$i] = $temp;
+    }
+    return $array;
+}
+
+function insertionSort($array)
+{
+    $len = count($array);
+    if ($len <= 1) {
+        return $array;
+    }
+    for ($i = 1; $i < $len; ++$i) {
+        for ($j = $i; $j > 0; --$j) {
+            if ($array[$j] < $array[$j - 1]) {
+                $temp = $array[$j];
+                $array[$j] = $array[$j - 1];
+                $array[$j - 1] = $temp;
+            }
+        }
+    }
+    return $array;
+}
+
+function shellSort($array)
+{
+    $len = count($array);
+    if ($len <= 1) {
+        return $array;
+    }
+    for ($gap = floor($len / 2); $gap > 0; $gap = floor($gap / 2)) {
+        for ($i = $gap; $i < $len; $i++) {
+            $j = $i;
+            $current = $array[$i];
+            while ($j - $gap >= 0 && $current < $array[$j - $gap]) {
+                $array[$j] = $array[$j - $gap];
+                $j = $j - $gap;
+            }
+            $array[$j] = $current;
+        }
+    }
+    return $array;
+}
+
+function mergeSort($array)
+{
+    $len = count($array);
+    if ($len <= 1) {
+        return $array;
+    }
+    $mid = intval($len / 2);
+    $left = array_slice($array, 0, $mid);
+    $right = array_slice($array, $mid);
+    $left = mergeSort($left);
+    $right = mergeSort($right);
+    $temp = [];
+    while (count($left) && count($right)) {
+        $temp[] = $left[0] < $right[0] ? array_shift($left) : array_shift($right);
+    }
+    $array = array_merge($temp, $left, $right);
+    return $array;
+}
+
+function quickSort($array)
+{
+    $len = count($array);
+    if ($len <= 1) {
+        return $array;
+    }
+    $v = $array[0];
+    $up = $low = [];
+    for ($i = 1; $i < $len; ++$i) {
+        $array[$i] > $v ? $up[] = $array[$i] : $low[] = $array[$i];
+    }
+    $low = quickSort($low);
+    $up = quickSort($up);
+    return array_merge($low, [$v], $up);
+}
+
 /**
  * 获取上层最小整10数 例如 6->10
  * @param $number
