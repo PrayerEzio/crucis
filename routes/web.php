@@ -10,15 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+$test_group = function () {
+    Route::group(['prefix' => 'Index'], function () {
+        Route::get('/index', 'IndexController@index')->name('Test.Index.index');
+    });
+};
+
 $home_private_group = function (){
     Route::group(['prefix' => 'Github'],function(){
         Route::post('/webhook','GithubController@webhook')->name('Home.Github.webhook');
     });
     Route::group(['prefix' => 'Wechat'],function(){
         Route::post('/vail','WechatController@vail')->name('Home.Wechat.vail');
-    });
-    Route::group(['prefix' => 'Test'],function(){
-        Route::get('/index','TestController@index')->name('Home.Test.index');
     });
     Route::group(['prefix' => 'Pay'],function(){
         Route::get('/wechat','PayController@wechat')->name('Home.Pay.wechat');
@@ -196,6 +199,8 @@ $auth_public_group = function(){
 };
 
 //Route::group(['prefix' => '','namespace' => 'Home'],$home_private_group);
+
+Route::group(['prefix' => 'Test', 'namespace' => 'Test'], $test_group);
 
 Route::group(['prefix' => '', 'namespace' => 'Admin', 'middleware' => ['admin.login', 'admin.permission']], $admin_private_group);
 

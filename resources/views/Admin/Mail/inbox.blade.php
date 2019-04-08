@@ -6,7 +6,7 @@
     <title>@yield('seo_title') - Crucis</title>
     <meta name="keywords" content="@yield('seo_keywords')">
     <meta name="description" content="@yield('seo_description')">
-    <link rel="shortcut icon" href="favicon.ico">
+
     <link href="{{ asset('assets/Admin',config('crucis.http_secure')) }}/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="{{ asset('assets/Admin',config('crucis.http_secure')) }}/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="{{ asset('assets/Admin',config('crucis.http_secure')) }}/css/plugins/iCheck/custom.css" rel="stylesheet">

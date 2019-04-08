@@ -12,7 +12,7 @@
     <meta http-equiv="refresh" content="0;ie.html" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <![endif]-->
-    <link rel="shortcut icon" href="favicon.ico">
+
     <link href="{{ asset('assets/Admin',config('crucis.http_secure')) }}/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link href="{{ asset('assets/Admin',config('crucis.http_secure')) }}/css/animate.min.css" rel="stylesheet">
