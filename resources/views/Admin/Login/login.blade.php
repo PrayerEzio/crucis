@@ -11,7 +11,6 @@
     <link href="{{ asset('assets/Admin',config('crucis.http_secure')) }}/css/animate.min.css" rel="stylesheet">
     <link href="{{ asset('assets/Admin',config('crucis.http_secure')) }}/css/style.css" rel="stylesheet">
     <link href="{{ asset('assets/Admin',config('crucis.http_secure')) }}/css/login.css" rel="stylesheet">
-    <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
     <!--[if lt IE 8]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
@@ -68,7 +67,7 @@
                     {{--<a href="">忘记密码了？</a>--}}
                     <div class="btn btn-success btn-block"
                          id="TencentCaptcha"
-                         data-appid="2056888306"
+                         data-appid="{{ config('captcha.tencent.app_id') }}"
                          data-cbfn="callback"
                     >登录
                     </div>
@@ -83,6 +82,7 @@
     </div>
 </body>
 <script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/jquery.min.js"></script>
+<script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
 <script>
     window.callback = function (res) {
         // res（用户主动关闭验证码）= {ret: 2, ticket: null}
