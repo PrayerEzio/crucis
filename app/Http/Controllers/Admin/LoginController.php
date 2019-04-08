@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Services\TencentCaptchaService;
 use Laravel\Socialite\Facades\Socialite;
 use Validator;
 use Crypt;
 use App\Http\Models\Admin;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-
 class LoginController extends CommonController
 {
-    public function index(Request $request)
+    public function index(Request $request, TencentCaptchaService $captchaService)
     {
-        if ($input = $request->all())
-        {
+        if ($input = $request->all()) {
             $rule = [
                 'email' => 'required',
                 'password' => 'required',
@@ -25,19 +23,20 @@ class LoginController extends CommonController
                 'password.required' => '请输入您的密码.',
             ];
             $validator = Validator::make($input,$rule,$message);
-            if ($validator->fails())
-            {
+            if ($validator->fails()) {
                 return back()->withErrors($validator->errors());
+            }
+            $captcha_result = $captchaService->auth($input['ticket'], $input['randstr'], $request->ip());
+            if ($captcha_result['response'] != 1) {
+                return back()->withErrors($captcha_result['err_msg']);
             }
             $adminModel = new Admin();
             $admin_info = $adminModel->where('email',$input['email'])->select('id','nickname','avatar','password','status')->first();
-            if (empty($admin_info) || $input['password'] !== Crypt::decrypt($admin_info['password']))
-            {
+            if (empty($admin_info) || $input['password'] !== Crypt::decrypt($admin_info['password'])) {
                 $errors[] = '账号密码错误.';
                 return back()->withErrors($errors);
             }
-            if (empty($admin_info['status']))
-            {
+            if (empty($admin_info['status'])) {
                 $errors[] = '您的账号已被冻结,请联系管理员解冻.';
                 return back()->withErrors($errors);
             }
@@ -54,8 +53,7 @@ class LoginController extends CommonController
 
     public function register(Request $request)
     {
-        if ($input = $request->all())
-        {
+        if ($input = $request->all()) {
             $rule = [
                 'email' => 'required|email|unique:admins,email',
                 'password' => 'required|confirmed|between:8,32',
@@ -71,8 +69,7 @@ class LoginController extends CommonController
                 'register_protocol.accepted' => '请同意我们的注册协议.'
             ];
             $validator = Validator::make($input,$rule,$message);
-            if ($validator->fails())
-            {
+            if ($validator->fails()) {
                 return back()->withErrors($validator->errors());
             }
             $admin_user['nickname'] = $input['email'];
@@ -82,8 +79,7 @@ class LoginController extends CommonController
             $admin_user['is_super_admin'] = 0;
             $admin_user['status'] = 1;
             $admin = Admin::create($admin_user);
-            if ($admin)
-            {
+            if ($admin) {
                 //TODO:发送注册成功通知.
                 return redirect()->action('Admin\IndexController@index');
             }else {
