@@ -473,7 +473,7 @@ function get_api($apiurl, $param, $format = 'array')
         $json = substr($json, $start);
     }
     $obj = json_decode($json);
-    $array = object_to_array($obj);
+    $array = json_decode($json, 1);
     switch ($format) {
         case 'array':
             $data = $array;

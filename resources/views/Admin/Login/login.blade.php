@@ -56,14 +56,21 @@
                         </ul>
                     </div>
                 @endif
-                <form method="post" action="">
+                <form method="post" action="" id="loginForm">
                     <h4 class="no-margins">登录：</h4>
                     <p class="m-t-md">登录到 <strong>Crucis</strong> 管理后台</p>
                     {{ csrf_field() }}
                     <input type="text" class="form-control uname" placeholder="用户名" name="email"/>
                     <input type="password" class="form-control pword m-b" placeholder="密码" name="password"/>
-                    <a href="">忘记密码了？</a>
-                    <button class="btn btn-success btn-block">登录</button>
+                    <input type="hidden" name="ticket" id="ticket"/>
+                    <input type="hidden" name="randstr" id="randstr"/>
+                    {{--<a href="">忘记密码了？</a>--}}
+                    <div class="btn btn-success btn-block"
+                         id="TencentCaptcha"
+                         data-appid="{{ config('captcha.tencent.app_id') }}"
+                         data-cbfn="callback"
+                    >登录
+                    </div>
                 </form>
             </div>
         </div>
@@ -74,4 +81,17 @@
         </div>
     </div>
 </body>
+<script src="{{ asset('assets/Admin',config('crucis.http_secure')) }}/js/jquery.min.js"></script>
+<script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+<script>
+    window.callback = function (res) {
+        // res（用户主动关闭验证码）= {ret: 2, ticket: null}
+        // res（验证成功） = {ret: 0, ticket: "String", randstr: "String"}
+        if (res.ret === 0) {
+            $("#ticket").val(res.ticket);
+            $("#randstr").val(res.randstr);
+            $("#loginForm").submit();
+        }
+    }
+</script>
 </html>

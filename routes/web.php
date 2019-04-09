@@ -184,8 +184,8 @@ $admin_public_group = function(){
         Route::get('/','LoginController@index')->name('admin.login.index');
         Route::post('/','LoginController@index');
         Route::get('/index','LoginController@index');
+        Route::post('/index', 'LoginController@index');
         Route::get('/register','LoginController@register');
-        Route::post('/index','LoginController@index');
         Route::post('/register','LoginController@register');
         Route::get('/github', 'LoginController@redirectToProvider');
         Route::get('/github/callback', 'LoginController@handleProviderCallback');
