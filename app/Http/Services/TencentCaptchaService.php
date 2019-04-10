@@ -21,7 +21,7 @@ class TencentCaptchaService
         $this->app_secret_key = config('captcha.tencent.secret_key');
     }
 
-    public function auth($ticket, $rand_str, $ip)
+    public function auth($ticket, $rand_str, $ip = '')
     {
         $apiurl = 'https://ssl.captcha.qq.com/ticket/verify';
         $param = [
