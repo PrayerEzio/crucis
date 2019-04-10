@@ -17,7 +17,7 @@ class AddOpenIdAndAccessSourceToUsersTable extends Migration
             $table->string('open_id')->default('');
             $table->string('access_source')->default('');
             $table->text('access_token')->nullable();
-            $table->text('refresh_token')->nullable('');
+            $table->text('refresh_token')->nullable();
         });
     }
 
