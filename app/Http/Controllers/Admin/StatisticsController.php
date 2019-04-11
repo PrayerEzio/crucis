@@ -130,9 +130,9 @@ class StatisticsController extends CommonController
             $type = 'day';
         }
         $year = date('Y', time());
-        $month = date('m', time());
-        $day = date('d', time());
-        $hour = date('h', time());
+        $month = date('n', time());
+        $day = date('j', time());
+        $hour = date('G', time());
         $y_axis_left_max = $y_axis_right_max = 0;
         $y_axis_left_min = $y_axis_right_min = 0;
         switch ($type) {
@@ -158,7 +158,7 @@ class StatisticsController extends CommonController
                 $last = '昨日';
                 break;
             case 'month':
-                $month_max_day = intval(date('d', Carbon::now()->endOfMonth()->timestamp));
+                $month_max_day = intval(date('n', Carbon::now()->endOfMonth()->timestamp));
                 for ($i = 1; $i <= $month_max_day; $i++) {
                     $x_axis[] = "{$i}日";
                     if ($i <= $day) {

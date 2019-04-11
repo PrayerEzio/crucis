@@ -62,8 +62,7 @@
                     {{ csrf_field() }}
                     <input type="text" class="form-control uname" placeholder="用户名" name="email"/>
                     <input type="password" class="form-control pword m-b" placeholder="密码" name="password"/>
-                    <input type="hidden" name="ticket" id="ticket"/>
-                    <input type="hidden" name="randstr" id="randstr"/>
+                    <input type="hidden" name="captcha_result" id="captcha_result"/>
                     {{--<a href="">忘记密码了？</a>--}}
                     <div class="btn btn-success btn-block"
                          id="TencentCaptcha"
@@ -88,8 +87,7 @@
         // res（用户主动关闭验证码）= {ret: 2, ticket: null}
         // res（验证成功） = {ret: 0, ticket: "String", randstr: "String"}
         if (res.ret === 0) {
-            $("#ticket").val(res.ticket);
-            $("#randstr").val(res.randstr);
+            $("#captcha_result").val(JSON.stringify(res));
             $("#loginForm").submit();
         }
     }

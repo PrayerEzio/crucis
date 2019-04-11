@@ -182,11 +182,11 @@ $admin_private_group = function(){
 $admin_public_group = function(){
     Route::group(['prefix' => 'Login'],function(){
         Route::get('/','LoginController@index')->name('admin.login.index');
-        Route::post('/','LoginController@index');
+        Route::post('/', 'LoginController@loginHandle');
         Route::get('/index','LoginController@index');
-        Route::post('/index', 'LoginController@index');
+        Route::post('/index', 'LoginController@loginHandle');
         Route::get('/register','LoginController@register');
-        Route::post('/register','LoginController@register');
+        Route::post('/register', 'LoginController@registerHandle');
         Route::get('/github', 'LoginController@redirectToProvider');
         Route::get('/github/callback', 'LoginController@handleProviderCallback');
     });

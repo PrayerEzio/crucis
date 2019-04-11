@@ -18,7 +18,12 @@ class OAuthAuthorizationController extends Controller
     public function handleProviderCallback(Request $request,$driver) {
         $socialite_data = Socialite::driver($driver)->user();
         $user_model = new User();
-        $user = $user_model->Socialite($driver,$socialite_data->unionid)->first();
+        if ($driver == 'github') {
+            $union_id = $socialite_data->id;
+        } else {
+            $union_id = $socialite_data->unionid;
+        }
+        $user = $user_model->Socialite($driver, $union_id)->first();
         if (empty($user))
         {
             $user = $this->create($driver,$socialite_data);
@@ -48,6 +53,20 @@ class OAuthAuthorizationController extends Controller
         $user = new User();
         switch ($driver)
         {
+            case 'github':
+                $user->nickname = $socialite_data->nickname;
+                $user->email = $socialite_data->email;
+                $user->avatar = $socialite_data->avatar;
+                $user->open_id = $socialite_user['node_id'];
+                $user->unionid = $socialite_user['id'];
+                $user->access_source = $driver;
+                $user->access_token = $socialite_data->token;
+                $user->refresh_token = $socialite_data->refreshToken;
+                $user->gender = 1;
+                $user->password = $socialite_user['id'];
+                $user->status = 1;
+                $user->save();
+                break;
             case 'wechat_mp':
                 dd($socialite_user);
                 break;
