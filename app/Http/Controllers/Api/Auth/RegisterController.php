@@ -90,7 +90,7 @@ class RegisterController extends BaseController {
     protected function create(array $data) {
         return User::create([
             'nickname' => "手机用户",
-            'avatar' => 'http://img.91ysml.net/demo/eyJpdiI6IitpTkp1WFlFd2VyXC8xS2NcLzNMWjFFQT09IiwidmFsdWUiOiI2RFBwMVRFZUN4WDlQYnV1TkR4QXJwVnRkUWk5VDd1dXJ1XC91MWI1MGZYQT0iLCJtYWMiOiI2ZjZkN2E3OGMyMzlmZDUwODExODYwNmQ3ODM2NDBkZTkwYzQ4ZDc4MWMzOTQ4MDRkZjNjNzgwZjg5YTFmZjk1In0=.png',
+            'avatar' => '',
             'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
             'access_source' => 'phone',

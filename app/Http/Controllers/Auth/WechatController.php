@@ -54,7 +54,7 @@ class WechatController extends Controller
                     $get_user_url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
                     $user_info = json_decode(get_url($get_user_url));
                 }
-                $user->nickname = $user_info->nickname;//TODO:emoji表情处理
+                $user->nickname = $user_info->nickname;
                 $user->openid = $user_info->openid;
                 $user->gender = $user_info->sex;
                 /*$user->country = $user_info->country;

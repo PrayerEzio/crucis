@@ -127,7 +127,7 @@ class UserController extends CommonController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id,User $user)
+    public function destroy(Request $request, User $user)
     {
         $res = $user->destroy($request->id);
         if ($res)

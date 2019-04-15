@@ -33,7 +33,7 @@ class OrderController extends CommonController
             $order_info = $order->orderSn($sn)->first();
             DB::beginTransaction(); //事务开始
             try{
-                //处理取消订单 根据订单状态回滚库存等相关数据 并记录日志
+                //TODO:处理取消订单 根据订单状态回滚库存等相关数据 并记录日志
                 switch ($order_info->status)
                 {
                     default:

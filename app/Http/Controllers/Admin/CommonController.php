@@ -17,8 +17,6 @@ abstract class CommonController extends Controller
     public function __construct()
     {
         parent::__construct();
-//        $message = new Message();
-//        $this->message_list = $message->getLatestMessage(1,25);
     }
 
     protected function getAdminId()
@@ -35,7 +33,7 @@ abstract class CommonController extends Controller
     protected function requestMethod()
     {
         $request = new Request();
-        return strtoupper($request->thod());
+        return strtoupper($request->method());
     }
 
     protected function hasPermission($admin_id,$permission)

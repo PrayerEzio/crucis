@@ -178,7 +178,7 @@ class GoodsController extends CommonController
             return redirect(config('crucis.app_url') . "/Admin/Goods/goodsList/{$request->category_id}")->with('alert', $alert);
         }else {
             $cate_list = $goodsCategory->get();
-            $cate_list = $this->unlimitedForLayer($cate_list);
+            $cate_list = unlimitedForLayer($cate_list);
             $attribute_category_list = $attributeCategory->get();
             $attribute_list = $attribute->get();
             return view('Admin.Goods.add_goods')->with(compact('cate_list','attribute_category_list','attribute_list'));
@@ -250,7 +250,7 @@ class GoodsController extends CommonController
             return redirect(config('crucis.app_url') . "/Admin/Goods/goodsList/{$request->category_id}")->with('alert', $alert);
         }else {
             $cate_list = $goodsCategory->get();
-            $cate_list = $this->unlimitedForLayer($cate_list);
+            $cate_list = unlimitedForLayer($cate_list);
             $attribute_category_list = $attributeCategory->get();
             $attribute_list = $attribute->get();
             $goods_info = $goods->findOrFail($id);

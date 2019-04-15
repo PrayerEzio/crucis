@@ -1,5 +1,54 @@
 <?php
 
+/**
+ * 获取子级ID
+ * @param array $array 集合数组
+ * @param int $pid 父级ID
+ * @param string $idKey 索引键名
+ * @param string $pidKey 父级关联键名
+ * @return Ambigous <multitype:, multitype:unknown >
+ */
+function getChildsId($array, $pid = 0, $id_name = 'id', $pid_name = 'parent_id', $loop = 999999)
+{
+    $arr = array();
+    if (!$loop) {
+        return $arr;
+    }
+    $loop--;
+    foreach ($array as $v) {
+        if ($v[$pid_name] == $pid) {
+            $arr[] = $v[$id_name];
+            $arr = array_merge($arr, getChildsId($array, $v[$id_name], $id_name, $pid_name, $loop));
+        }
+    }
+    return $arr;
+}
+
+function unlimitedForLayer($cate, $child_name = 'child', $pid_name = 'parent_id', $id_name = 'id', $pid = 0)
+{
+    $arr = array();
+    foreach ($cate as $v) {
+        if ($v[$pid_name] == $pid) {
+            $v[$child_name] = unlimitedForLayer($cate, $child_name, $pid_name, $id_name, $v[$id_name]);
+            $arr[] = $v;
+        }
+    }
+    return $arr;
+}
+
+//传递一个子分类ID返回所有的父级分类
+function getParents($cate, $id, $pid_name = 'parent_id', $id_name = 'id')
+{
+    $arr = array();
+    foreach ($cate as $v) {
+        if ($v[$id_name] == $id) {
+            $arr[] = $v;
+            $arr = array_merge(getParents($cate, $v[$pid_name], $pid_name, $id_name), $arr);
+        }
+    }
+    return $arr;
+}
+
 function bubbleSort($array)
 {
     $len = count($array);

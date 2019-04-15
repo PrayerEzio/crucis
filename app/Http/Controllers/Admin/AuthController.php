@@ -32,14 +32,6 @@ class AuthController extends CommonController
     public function role_list(Role $role)
     {
         $role_list = $role->paginate(12);
-        /*foreach ($role_list as $key => $role)
-        {
-            $adminRoleUser = new AdminRoleUser();
-            $role_admin_id_list = $adminRoleUser->where('admin_role_id','=',$role['id'])->pluck('admin_id');
-            $admin = new Admin();
-            $role_admin_list = $admin->select('id','nickname','avatar')->whereIn('id',$role_admin_id_list)->limit(5)->get();
-            $role_list[$key]['role_admin_list'] = $role_admin_list;
-        }*/
         return view('Admin.Auth.role_list')->with(compact('role_list'));
     }
 

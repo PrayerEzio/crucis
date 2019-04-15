@@ -66,7 +66,7 @@ class PayController extends Controller
                 'h5_info'=> [
                     'type' => 'Wap',
                     'wap_url' => config('crucis.h5_url'),
-                    'wap_name' => '推币机充值金币',
+                    'wap_name' => '充值金币',
                 ]
             ]),
         ];

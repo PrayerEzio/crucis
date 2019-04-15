@@ -7,13 +7,11 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\Test;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redis;
 
-class TestController extends Controller
+class IndexController extends Controller
 {
     public function index()
     {
