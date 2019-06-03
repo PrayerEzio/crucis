@@ -28,7 +28,7 @@ return [
             'accessKey'=>env('QINIU_ACCESS_KEY'),
             'secretKey'=>env('QINIU_SECRET_KEY'),
             'bucket'=>env('QINIU_BUCKET'),
-            'url'=>'http:'.env('QINIU_STORAGE_DOMAIN_URL'),//七牛分配的CDN域名,注意带上http://
+            'url'=>env('QINIU_STORAGE_DOMAIN_URL'),//七牛分配的CDN域名,注意带上http://
 
         ]
     ],

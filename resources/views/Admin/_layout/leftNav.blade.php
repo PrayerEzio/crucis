@@ -59,6 +59,20 @@
                 </ul>
             </li>
             <li>
+                <a href="#"><i class="fa fa-newspaper"></i> <span class="nav-label">文章 </span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a class="J_menuItem" href="{{ url('Admin/Article/cateList',[],config('crucis.http_secure')) }}">分类列表</a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="{{ url('Admin/Article/index',[],config('crucis.http_secure')) }}">文章列表</a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="{{ url('Admin/Article/add',[],config('crucis.http_secure')) }}">新增文章</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
                 <a href="#"><i class="fab fa-adversal"></i> <span class="nav-label">广告</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

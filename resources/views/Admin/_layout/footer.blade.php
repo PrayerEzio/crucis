@@ -1,4 +1,4 @@
 <div class="footer">
-    <div class="pull-right">&copy; 2014-2016 <a href="https://www.crucis.cn/" target="_blank">Prayer</a>
+    <div class="pull-right">&copy; {{ date('Y',time()) }} All Rights Reserved. <a href="http://www.crucis.cn/" target="_blank">Crucis</a>
     </div>
 </div>

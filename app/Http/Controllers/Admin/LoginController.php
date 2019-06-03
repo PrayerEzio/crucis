@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\LoginRequest;
 use App\Http\Requests\Admin\RegisterRequest;
-use Laravel\Socialite\Facades\Socialite;
 use Validator;
 use Crypt;
 use App\Http\Models\Admin;

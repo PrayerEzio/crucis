@@ -21,7 +21,7 @@ class AjaxController extends CommonController
         }
     }
     
-    public function getAttributesList(Request $request,AttributeCategory $attributeCategory)
+    public function getAttributesList(Request $request, AttributeCategory $attributeCategory)
     {
         $data = $attributeCategory->find($request->id);
         $data['attributes'] = $data->attributes;
